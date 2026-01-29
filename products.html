@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | CUSTOM LABS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="main-nav fixed">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <span>CUSTOM</span>
+                    <span class="logo-orange">LABS</span>
+                </a>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="products.html" class="nav-link active">PRODUCTS</a>
+                <a href="process.html" class="nav-link">PROCESS</a>
+                <a href="about.html" class="nav-link">ABOUT</a>
+                <a href="contact.html" class="nav-link">CONTACT</a>
+            </div>
+            
+            <div class="nav-auth">
+                <button class="login-btn" id="loginBtn">
+                    <i class="fas fa-user"></i>
+                    <span>LOGIN</span>
+                </button>
+                
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>OUR <span class="highlight">PRODUCTS</span></h1>
+            <p>Customize anything to match your unique style</p>
+        </div>
+    </header>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <button class="filter-btn active" data-category="all">ALL PRODUCTS</button>
+                <button class="filter-btn" data-category="apparel">APPAREL</button>
+                <button class="filter-btn" data-category="accessories">ACCESSORIES</button>
+                <button class="filter-btn" data-category="home">HOME & LIVING</button>
+                <button class="filter-btn" data-category="gifts">GIFTS</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Apparel -->
+                <div class="product-card" data-category="apparel" id="apparel">
+                    <div class="product-badge">POPULAR</div>
+                    <div class="product-image">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CUSTOM T-SHIRTS</h3>
+                        <p>Design your own t-shirt with custom prints, text, and colors.</p>
+                        <div class="product-price">Starting at <span>$24.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Custom T-Shirts')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="apparel">
+                    <div class="product-image">
+                        <i class="fas fa-hat-cowboy"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CUSTOM HATS & CAPS</h3>
+                        <p>Create personalized hats with embroidery or prints.</p>
+                        <div class="product-price">Starting at <span>$19.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Custom Hats')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="apparel">
+                    <div class="product-image">
+                        <i class="fas fa-vest"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CUSTOM HOODIES</h3>
+                        <p>Design cozy hoodies with your unique graphics and text.</p>
+                        <div class="product-price">Starting at <span>$44.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Custom Hoodies')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="product-card" data-category="accessories" id="mugs">
+                    <div class="product-badge">BEST SELLER</div>
+                    <div class="product-image">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>PERSONALIZED MUGS</h3>
+                        <p>Create mugs with your photos, text, or custom designs.</p>
+                        <div class="product-price">Starting at <span>$14.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Personalized Mugs')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image">
+                        <i class="fas fa-watch"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CUSTOM WATCHES</h3>
+                        <p>Design a timepiece that reflects your personality.</p>
+                        <div class="product-price">Starting at <span>$89.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Custom Watches')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessories" id="bags">
+                    <div class="product-image">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>DESIGNER BAGS</h3>
+                        <p>Craft your ideal bag with custom materials and colors.</p>
+                        <div class="product-price">Starting at <span>$69.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Designer Bags')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>PHONE CASES</h3>
+                        <p>Protect your phone with a custom-designed case.</p>
+                        <div class="product-price">Starting at <span>$12.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Phone Cases')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Home & Living -->
+                <div class="product-card" data-category="home">
+                    <div class="product-image">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CUSTOM PILLOWS</h3>
+                        <p>Design decorative pillows with your favorite images.</p>
+                        <div class="product-price">Starting at <span>$29.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Custom Pillows')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="home">
+                    <div class="product-image">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CANVAS PRINTS</h3>
+                        <p>Turn your photos into stunning canvas wall art.</p>
+                        <div class="product-price">Starting at <span>$39.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Canvas Prints')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="home">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-image">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CUSTOM GLASSWARE</h3>
+                        <p>Personalized glasses, wine bottles, and drinkware.</p>
+                        <div class="product-price">Starting at <span>$18.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Custom Glassware')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gifts -->
+                <div class="product-card" data-category="gifts">
+                    <div class="product-image">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>PHOTO CALENDARS</h3>
+                        <p>Create personalized calendars with your memories.</p>
+                        <div class="product-price">Starting at <span>$22.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Photo Calendars')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="gifts">
+                    <div class="product-image">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>PHOTO BOOKS</h3>
+                        <p>Compile your favorite moments into a beautiful book.</p>
+                        <div class="product-price">Starting at <span>$34.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Photo Books')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="gifts">
+                    <div class="product-image">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CUSTOM PUZZLES</h3>
+                        <p>Turn any image into a fun, personalized puzzle.</p>
+                        <div class="product-price">Starting at <span>$24.99</span></div>
+                        <button class="product-btn" onclick="customizeProduct('Custom Puzzles')">
+                            <span>CUSTOMIZE NOW</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>CAN'T FIND WHAT YOU'RE LOOKING FOR?</h2>
+            <p>Contact us for custom requests and special orders</p>
+            <a href="contact.html" class="cta-button">
+                <span>GET IN TOUCH</span>
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Login Modal (same as index.html) -->
+    <div class="auth-modal" id="authModal">
+        <!-- ... (same modal content) ... -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>CUSTOM</span>
+                    <span>LABS</span>
+                </div>
+                <p class="footer-tagline">Creating uniqueness, one product at a time.</p>
+                
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <p class="footer-copyright">© 2024 CUSTOM LABS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="firebase-app.js"></script>
+    <script src="script.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>
